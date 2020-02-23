@@ -41,5 +41,4 @@ I hope you like this module, I know it duplicates many other weather modules, ho
 
 ## Thanks To...
 - [Michael Teeuw](https://github.com/MichMich) for the [MagicMirror2](https://github.com/MichMich/MagicMirror/tree/develop) framework that made this module possible.
-- [Sam Lewis](https://github.com/SamLewis0602) whose [MMM-Traffic](https://github.com/SamLewis0602/MMM-Traffic) module I use and whose code I learnt a great deal from.
-- [BitWeather](https://www.weatherbit.io) for the helpful guides and information they publish on their API.
+- [MMM-3Day-Forecast](https://github.com/nigel-daniels/MMM-3Day-Forecast) module I used and whose code I learnt a great deal from.
