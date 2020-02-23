@@ -6,7 +6,6 @@ This a module for the [MagicMirror](https://github.com/MichMich/MagicMirror/tree
 
 ## Installation
 1. Navigate into your MagicMirror's `modules` folder and execute `git clone https://github.com/MichaelByers/MMM-AC-3Day-Forecast`.  A new folder `MMM-AC-3Day-Forecast` will appear, navigate into it.
-2. Execute `npm install` to install the node dependencies.
 
 ## Config
 The entry in `config.js` can include the following options:
