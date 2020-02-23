@@ -8,7 +8,7 @@
 Module.register('MMM-AC-3Day-Forecast', {
 
 	defaults: {
-            api_key:    '',
+            apikey:    '',
             loc:		347810, //denver,co
 			metric:		false,  //defualt is imperial
 			lang:		'en-us',
@@ -22,7 +22,7 @@ Module.register('MMM-AC-3Day-Forecast', {
         // Set up the local values, here we construct the request url to use
         this.units = this.config.units;
         this.loaded = false;
-		this.url = 'http://dataservice.accuweather.com/forecasts/v1/daily/5day/' + this.config.loc + '?' + this.config.api_key + '&metric=' + this.config.metric + '&lang=' + this.config.lang + '&details=true';
+		this.url = 'http://dataservice.accuweather.com/forecasts/v1/daily/5day/' + this.config.loc + '?apikey=' + this.config.apikey + '&metric=' + this.config.metric + '&lang=' + this.config.lang + '&details=true';
         this.forecast = [];
 
         // Trigger the first request
@@ -49,7 +49,6 @@ Module.register('MMM-AC-3Day-Forecast', {
 
         // If we have some data to display then build the results
         if (this.loaded) {
-
             wrapper = document.createElement('table');
 	 	    wrapper.className = 'forecast small';
             forecastRow = document.createElement('tr');
@@ -63,15 +62,15 @@ Module.register('MMM-AC-3Day-Forecast', {
                 switch (i) {
                     case 0:
                         forecastClass = 'today';
-                        title = 'TODAY';
+                        title = 'Today';
                         break;
                     case 1:
                         forecastClass = 'tomorrow';
-                        title = 'TOMORROW';
+                        title = 'Tomorrow';
                         break;
                     case 2:
                         forecastClass = 'dayAfter';
-                        title = 'DAYAFTER';
+                        title = 'Day After';
                         break;
                 }
 
@@ -87,11 +86,15 @@ Module.register('MMM-AC-3Day-Forecast', {
                 forecastIcon.className = 'forecastIcon';
                 forecastIcon.setAttribute('height', '50');
                 forecastIcon.setAttribute('width', '50');
-                forecastIcon.src = 'https://developer.accuweather.com/sites/default/files/' + this.forecast[i].Day.Icon + '-s.png';
+                var icon = this.forecast[i].Day.Icon;
+                if (icon < 10) {
+                    icon = "0" + this.forecast[i].Day.Icon;
+                }
+                forecastIcon.src = 'https://developer.accuweather.com/sites/default/files/' + icon + '-s.png';
 
                 forecastText = document.createElement('div');
                 forecastText.className = 'forecastText horizontalView bright';
-                forecastText.innerHTML = this.forecast[i].Day.IconPhrase;
+                forecastText.innerHTML = this.forecast[i].Day.ShortPhrase;
 
                 forecastBr = document.createElement('br');
 
@@ -120,7 +123,8 @@ Module.register('MMM-AC-3Day-Forecast', {
                 rainIcon.src = './modules/MMM-AC-3Day-Forecast/images/wet.png';
 
                 rainText = document.createElement('span');
-                rainText.innerHTML = this.forecast[i].Day.PrecipitationProbability + '%';
+                var precip = Math.max(this.forecast[i].Day.PrecipitationProbability, this.forecast[i].Night.PrecipitationProbability);
+                rainText.innerHTML = precip + '%';
 
                 rainBr = document.createElement('br');
 
@@ -132,7 +136,7 @@ Module.register('MMM-AC-3Day-Forecast', {
                 windIcon.src = './modules/MMM-AC-3Day-Forecast/images/wind.png';
 
                 windText = document.createElement('span');
-                windText.innerHTML = Math.round(this.forecast[i].Day.Wind.Speed) + ' ' + this.forecast[i].Day.Wind.Direction.Localized;
+                windText.innerHTML = Math.round(this.forecast[i].Day.Wind.Speed.Value) + ' ' + this.forecast[i].Day.Wind.Direction.Localized;
 
                 // Now assemble the details
                 forecastDetail.appendChild(tempIcon);
