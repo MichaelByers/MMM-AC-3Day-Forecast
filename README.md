@@ -37,7 +37,7 @@ Here is an example of an entry in `config.js`
 - [request](https://www.npmjs.com/package/request) (installed via `npm install`)
 
 ## Notes
-I hope you like this module, I know it duplicates many other weather modules, however I missed my home-brew mirrors weather information so I recreated it for MM2.  Feel free to submit pull requests or post issues and I'll do my best to respond.
+I hope you like this module, I know it duplicates many other weather modules, however I preferred the data from Accuweather.  Feel free to submit pull requests or post issues and I'll do my best to respond.
 
 ## Thanks To...
 - [Michael Teeuw](https://github.com/MichMich) for the [MagicMirror2](https://github.com/MichMich/MagicMirror/tree/develop) framework that made this module possible.
