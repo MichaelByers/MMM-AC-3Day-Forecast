@@ -10,7 +10,7 @@ Module.register('MMM-AC-3Day-Forecast', {
 	defaults: {
             apikey:    '',
             loc:		347810, //denver,co
-			metric:		false,  //defualt is imperial
+			metric:		false,  //true is imperial
 			lang:		'en-us',
             interval:   18000000 // Every 30 mins (50 api calls per day max)
         },
@@ -18,6 +18,7 @@ Module.register('MMM-AC-3Day-Forecast', {
 
     start:  function() {
         Log.log('Starting module: ' + this.name);
+        var self = this;
 
         // Set up the local values, here we construct the request url to use
         this.units = this.config.units;
@@ -27,19 +28,20 @@ Module.register('MMM-AC-3Day-Forecast', {
 
         // Trigger the first request
         this.getWeatherData(this);
-        },
-
+        setInterval(function() {
+            self.getWeatherData(self);
+          }, self.config.interval);
+    },
 
     getStyles: function() {
         return ['3day_forecast.css', 'font-awesome.css'];
-        },
+    },
 
 
     getWeatherData: function(_this) {
         // Make the initial request to the helper then set up the timer to perform the updates
         _this.sendSocketNotification('GET-AC-3DAY-FORECAST', _this.url);
-        setTimeout(_this.getWeatherData, _this.config.interval, _this);
-        },
+    },
 
 
     getDom: function() {
@@ -85,7 +87,7 @@ Module.register('MMM-AC-3Day-Forecast', {
                 forecastIcon = document.createElement('img');
                 forecastIcon.className = 'forecastIcon';
                 forecastIcon.setAttribute('height', '50');
-                forecastIcon.setAttribute('width', '50');
+                forecastIcon.setAttribute('width', '75');
                 var icon = this.forecast[i].Day.Icon;
                 if (icon < 10) {
                     icon = "0" + this.forecast[i].Day.Icon;
@@ -136,7 +138,7 @@ Module.register('MMM-AC-3Day-Forecast', {
                 windIcon.src = './modules/MMM-AC-3Day-Forecast/images/wind.png';
 
                 windText = document.createElement('span');
-                windText.innerHTML = Math.round(this.forecast[i].Day.Wind.Speed.Value) + ' ' + this.forecast[i].Day.Wind.Direction.Localized;
+                windText.innerHTML = Math.round(this.forecast[i].Day.Wind.Speed.Value) + ' &#8594; ' + Math.round(this.forecast[i].Day.WindGust.Speed.Value)//this.forecast[i].Day.Wind.Direction.Localized;
 
                 // Now assemble the details
                 forecastDetail.appendChild(tempIcon);
