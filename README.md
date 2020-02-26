@@ -28,7 +28,7 @@ Here is an example of an entry in `config.js`
 		loc:        '347810',
 		metric:     'false',
 		lang:       'en-us',
-		interval:   18000000
+		interval:   1800000
 	}
 },
 ```
