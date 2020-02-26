@@ -87,7 +87,6 @@ Module.register('MMM-AC-3Day-Forecast', {
 
                 forcastTitle = document.createElement('div');
                 forcastTitle.className = 'forecastTitle';
-                forcastTitle.innerHTML = title;
 
                 forecastIcon = document.createElement('img');
                 forecastIcon.className = 'forecastIcon';
@@ -136,7 +135,7 @@ Module.register('MMM-AC-3Day-Forecast', {
 
                 windText = document.createElement('span');
                 
-                var icon = "";
+                var icon = '';
                 var precip = 0;
                 // if at night, show tonight's details instead
                 if ((hour >= 17) && (i == 0)) {
@@ -144,6 +143,7 @@ Module.register('MMM-AC-3Day-Forecast', {
                     if (icon < 10) {
                         icon = "0" + this.forecast[i].Night.Icon;
                     }
+                    title = "Tonight";
                     forecastText.innerHTML = this.forecast[i].Night.ShortPhrase;
                     precip = this.forecast[i].Night.PrecipitationProbability;
                     windText.innerHTML = Math.round(this.forecast[i].Night.Wind.Speed.Value) + ' &#8594; ' + Math.round(this.forecast[i].Night.WindGust.Speed.Value);
@@ -158,6 +158,7 @@ Module.register('MMM-AC-3Day-Forecast', {
                 }
                 forecastIcon.src = 'https://developer.accuweather.com/sites/default/files/' + icon + '-s.png';
                 rainText.innerHTML = precip + '%';
+                forcastTitle.innerHTML = title;
 
                 // Now assemble the details
                 forecastDetail.appendChild(tempIcon);
