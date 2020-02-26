@@ -13,7 +13,7 @@ The entry in `config.js` can include the following options:
 |Option|Description|
 |---|---|
 |`apikey`|**Required** This is the API key you need to use to request weather data from the Weather Underground site.  Details on how to request an API key can be found [here](https://www.weatherbit.io/account/create)<br><br>**Type:** `string`<br>**Default value:** `null`|
-|`loc`|This is the loaction code for the city you want to get the weather for, from Accuweather location API call.<br><br>**Type:** `number`<br>**Default value:** `0`|
+|`loc`|This is the loaction code for the city you want to get the weather for, from Accuweather location API call.<br><br>**Type:** `number`<br>**Default value:** `347810 //Denver`|
 |`units`|Option to show units in metric.<br>**Type** `string` Use `true` for metric OR `false` for imperial.<br>**Default value:** `M`|
 |`lang`|This is the two character country code for the language you want the weather in.\*<br><br>**Type** `string`<br>**Default value** `en-us`|
 |`interval`|How often the weather is updated.<br><br>**Type:** `integer`<br>**Default value:** `1800000 // 30 minutes`|
