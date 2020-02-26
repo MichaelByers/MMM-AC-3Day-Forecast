@@ -15,6 +15,10 @@ Module.register('MMM-AC-3Day-Forecast', {
             interval:   18000000 // Every 30 mins (50 api calls per day max)
         },
 
+    // Define required scripts.
+    getScripts: function() {
+        return ["moment.js"];
+    },
 
     start:  function() {
         Log.log('Starting module: ' + this.name);
@@ -54,12 +58,13 @@ Module.register('MMM-AC-3Day-Forecast', {
             wrapper = document.createElement('table');
 	 	    wrapper.className = 'forecast small';
             forecastRow = document.createElement('tr');
-
+            var hour = moment().hour();
+ 
             // Set up the forecast for three three days
             for (var i = 0; i < 3; i++) {
                 var forecastClass = '';
                 var title = '';
-
+                
                 // Determine which day we are detailing
                 switch (i) {
                     case 0:
@@ -88,15 +93,9 @@ Module.register('MMM-AC-3Day-Forecast', {
                 forecastIcon.className = 'forecastIcon';
                 forecastIcon.setAttribute('height', '50');
                 forecastIcon.setAttribute('width', '75');
-                var icon = this.forecast[i].Day.Icon;
-                if (icon < 10) {
-                    icon = "0" + this.forecast[i].Day.Icon;
-                }
-                forecastIcon.src = 'https://developer.accuweather.com/sites/default/files/' + icon + '-s.png';
 
                 forecastText = document.createElement('div');
                 forecastText.className = 'forecastText horizontalView bright';
-                forecastText.innerHTML = this.forecast[i].Day.ShortPhrase;
 
                 forecastBr = document.createElement('br');
 
@@ -113,7 +112,7 @@ Module.register('MMM-AC-3Day-Forecast', {
 
                 tempText = document.createElement('span');
                 tempText.className = 'normal';
-				tempText.innerHTML = this.forecast[i].Temperature.Maximum.Value + '&deg;';
+				tempText.innerHTML = this.forecast[i].Temperature.Minimum.Value + '&deg; &#8594; ' + this.forecast[i].Temperature.Maximum.Value + '&deg;';
 
                 tempBr = document.createElement('br');
 
@@ -125,9 +124,7 @@ Module.register('MMM-AC-3Day-Forecast', {
                 rainIcon.src = './modules/MMM-AC-3Day-Forecast/images/wet.png';
 
                 rainText = document.createElement('span');
-                var precip = Math.max(this.forecast[i].Day.PrecipitationProbability, this.forecast[i].Night.PrecipitationProbability);
-                rainText.innerHTML = precip + '%';
-
+ 
                 rainBr = document.createElement('br');
 
                 // Build up the details regarding wind
@@ -138,7 +135,29 @@ Module.register('MMM-AC-3Day-Forecast', {
                 windIcon.src = './modules/MMM-AC-3Day-Forecast/images/wind.png';
 
                 windText = document.createElement('span');
-                windText.innerHTML = Math.round(this.forecast[i].Day.Wind.Speed.Value) + ' &#8594; ' + Math.round(this.forecast[i].Day.WindGust.Speed.Value)//this.forecast[i].Day.Wind.Direction.Localized;
+                
+                var icon = "";
+                var precip = 0;
+                // if at night, show tonight's details instead
+                if ((hour >= 17) && (i == 0)) {
+                    icon = this.forecast[i].Night.Icon;
+                    if (icon < 10) {
+                        icon = "0" + this.forecast[i].Night.Icon;
+                    }
+                    forecastText.innerHTML = this.forecast[i].Night.ShortPhrase;
+                    precip = this.forecast[i].Night.PrecipitationProbability;
+                    windText.innerHTML = Math.round(this.forecast[i].Night.Wind.Speed.Value) + ' &#8594; ' + Math.round(this.forecast[i].Night.WindGust.Speed.Value);
+                } else {
+                    icon = this.forecast[i].Day.Icon;
+                    if (icon < 10) {
+                        icon = "0" + this.forecast[i].Day.Icon;
+                    }
+                    forecastText.innerHTML = this.forecast[i].Day.ShortPhrase;
+                    precip = Math.max(this.forecast[i].Day.PrecipitationProbability, this.forecast[i].Night.PrecipitationProbability);
+                    windText.innerHTML = Math.round(this.forecast[i].Day.Wind.Speed.Value) + ' &#8594; ' + Math.round(this.forecast[i].Day.WindGust.Speed.Value);
+                }
+                forecastIcon.src = 'https://developer.accuweather.com/sites/default/files/' + icon + '-s.png';
+                rainText.innerHTML = precip + '%';
 
                 // Now assemble the details
                 forecastDetail.appendChild(tempIcon);
