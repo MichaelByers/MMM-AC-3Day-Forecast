@@ -20,7 +20,9 @@
     padding-bottom: 5px;
 }
 .forecastText {
-    font-size: 17px
+    font-size: 17px;
+    max-width: 130px;
+    height: 50px;
 }
 .forecastDetail {
     text-align: left;

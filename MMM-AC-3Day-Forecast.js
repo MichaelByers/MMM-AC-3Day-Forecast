@@ -111,7 +111,7 @@ Module.register('MMM-AC-3Day-Forecast', {
 
                 tempText = document.createElement('span');
                 tempText.className = 'normal';
-				tempText.innerHTML = this.forecast[i].Temperature.Minimum.Value + '&deg; &#8594; ' + this.forecast[i].Temperature.Maximum.Value + '&deg;';
+				tempText.innerHTML = this.forecast[i].Temperature.Minimum.Value + '&deg; &#8658; ' + this.forecast[i].Temperature.Maximum.Value + '&deg;';
 
                 tempBr = document.createElement('br');
 
@@ -146,7 +146,7 @@ Module.register('MMM-AC-3Day-Forecast', {
                     title = "Tonight";
                     forecastText.innerHTML = this.forecast[i].Night.ShortPhrase;
                     precip = this.forecast[i].Night.PrecipitationProbability;
-                    windText.innerHTML = Math.round(this.forecast[i].Night.Wind.Speed.Value) + ' &#8594; ' + Math.round(this.forecast[i].Night.WindGust.Speed.Value);
+                    windText.innerHTML = Math.round(this.forecast[i].Night.Wind.Speed.Value) + ' &#10613; ' + Math.round(this.forecast[i].Night.WindGust.Speed.Value) + '<span style="font-size: 15px"> mph</font>';
                 } else {
                     icon = this.forecast[i].Day.Icon;
                     if (icon < 10) {
@@ -154,7 +154,7 @@ Module.register('MMM-AC-3Day-Forecast', {
                     }
                     forecastText.innerHTML = this.forecast[i].Day.ShortPhrase;
                     precip = Math.max(this.forecast[i].Day.PrecipitationProbability, this.forecast[i].Night.PrecipitationProbability);
-                    windText.innerHTML = Math.round(this.forecast[i].Day.Wind.Speed.Value) + ' &#8594; ' + Math.round(this.forecast[i].Day.WindGust.Speed.Value);
+                    windText.innerHTML = Math.round(this.forecast[i].Day.Wind.Speed.Value) + ' &#10613; ' + Math.round(this.forecast[i].Day.WindGust.Speed.Value) + '<span style="font-size: 15px"> mph</font>';
                 }
                 forecastIcon.src = 'https://developer.accuweather.com/sites/default/files/' + icon + '-s.png';
                 rainText.innerHTML = precip + '%';
