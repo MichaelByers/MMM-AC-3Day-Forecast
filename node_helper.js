@@ -30,6 +30,7 @@ module.exports = NodeHelper.create({
                 }
             } else {
                 // In all other cases it's some other error
+                console.log('[MMM-3Day-Forecast] ' + result.Code);
             }
 
             // We have the response figured out so lets fire off the notifiction
