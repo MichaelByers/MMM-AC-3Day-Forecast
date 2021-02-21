@@ -194,8 +194,10 @@ Module.register('MMM-AC-3Day-Forecast', {
         // check to see if the response was for us and used the same url
         if (notification === 'GOT-AC-3DAY-FORECAST' && payload.url === this.url) {
                 // we got some data so set the flag, stash the data to display then request the dom update
-                this.loaded = true;
-                this.forecast = payload.forecast;
+                if(payload.forecast.length > 0) {
+                    this.loaded = true;
+                    this.forecast = payload.forecast;
+                }
                 this.updateDom(1000);
             }
         }
