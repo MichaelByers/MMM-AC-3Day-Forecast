@@ -123,7 +123,6 @@ Module.register('MMM-AC-3Day-Forecast', {
                 rainIcon.src = './modules/MMM-AC-3Day-Forecast/images/wet.png';
 
                 rainText = document.createElement('span');
- 
                 rainBr = document.createElement('br');
 
                 // Build up the details regarding wind
@@ -134,7 +133,18 @@ Module.register('MMM-AC-3Day-Forecast', {
                 windIcon.src = './modules/MMM-AC-3Day-Forecast/images/wind.png';
 
                 windText = document.createElement('span');
-                
+                windBr = document.createElement('br');
+
+                // Build up the details regarding sunset
+                sunIcon = document.createElement('img');
+                sunIcon.className = 'detailIcon';
+                sunIcon.setAttribute('height', '15');
+                sunIcon.setAttribute('width', '15');
+                sunIcon.src = './modules/MMM-AC-3Day-Forecast/images/sunset.png';
+
+                sunText = document.createElement('span');
+                sunText.innerHTML = moment(this.forecast[i].Sun.Set).format('h:mm');    
+
                 var icon = '';
                 var precip = 0;
                 // if at night, show tonight's details instead
@@ -169,6 +179,9 @@ Module.register('MMM-AC-3Day-Forecast', {
                 forecastDetail.appendChild(rainBr);
                 forecastDetail.appendChild(windIcon);
                 forecastDetail.appendChild(windText);
+                forecastDetail.appendChild(windBr);
+                forecastDetail.appendChild(sunIcon);
+                forecastDetail.appendChild(sunText);
 
                 forcastDay.appendChild(forcastTitle);
                 forcastDay.appendChild(forecastIcon);
