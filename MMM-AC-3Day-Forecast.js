@@ -44,7 +44,11 @@ Module.register('MMM-AC-3Day-Forecast', {
 
     getWeatherData: function(_this) {
         // Make the initial request to the helper then set up the timer to perform the updates
-        _this.sendSocketNotification('GET-AC-3DAY-FORECAST', _this.url);
+	var hour = moment().hour();
+
+	if( (hour >= 6) && (hour <=22) ) {
+            _this.sendSocketNotification('GET-AC-3DAY-FORECAST', _this.url);
+        }
     },
 
 
