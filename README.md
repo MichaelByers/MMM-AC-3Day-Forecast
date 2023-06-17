@@ -34,7 +34,7 @@ Here is an example of an entry in `config.js`
 ```
 
 ## Dependencies
-- [request](https://www.npmjs.com/package/request) (installed via `npm install`)
+- [axios](https://www.npmjs.com/package/axios) (installed via `npm install`)
 
 ## Notes
 I hope you like this module, I know it duplicates many other weather modules, however I preferred the data from Accuweather.  Feel free to submit pull requests or post issues and I'll do my best to respond.
