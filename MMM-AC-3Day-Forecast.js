@@ -63,6 +63,7 @@ Module.register('MMM-AC-3Day-Forecast', {
 	 	    wrapper.className = 'forecast small';
             forecastRow = document.createElement('tr');
             var hour = moment().hour();
+            const imgSize = '17';
  
             // Set up the forecast for three three days
             for (var i = 0; i < 3; i++) {
@@ -109,8 +110,8 @@ Module.register('MMM-AC-3Day-Forecast', {
                 // Build up the details regarding temprature
                 tempIcon = document.createElement('img');
                 tempIcon.className = 'detailIcon';
-                tempIcon.setAttribute('height', '15');
-                tempIcon.setAttribute('width', '15');
+                tempIcon.setAttribute('height', imgSize);
+                tempIcon.setAttribute('width', imgSize);
                 tempIcon.src = './modules/MMM-AC-3Day-Forecast/images/high.png';
 
                 tempText = document.createElement('span');
@@ -122,8 +123,8 @@ Module.register('MMM-AC-3Day-Forecast', {
                 // Build up the details regarding precipitation %
                 rainIcon = document.createElement('img');
                 rainIcon.className = 'detailIcon';
-                rainIcon.setAttribute('height', '15');
-                rainIcon.setAttribute('width', '15');
+                rainIcon.setAttribute('height', imgSize);
+                rainIcon.setAttribute('width', imgSize);
                 rainIcon.src = './modules/MMM-AC-3Day-Forecast/images/wet.png';
 
                 rainText = document.createElement('span');
@@ -132,8 +133,8 @@ Module.register('MMM-AC-3Day-Forecast', {
                 // Build up the details regarding wind
                 windIcon = document.createElement('img');
                 windIcon.className = 'detailIcon';
-                windIcon.setAttribute('height', '15');
-                windIcon.setAttribute('width', '15');
+                windIcon.setAttribute('height', imgSize);
+                windIcon.setAttribute('width', imgSize);
                 windIcon.src = './modules/MMM-AC-3Day-Forecast/images/wind.png';
 
                 windText = document.createElement('span');
@@ -142,8 +143,8 @@ Module.register('MMM-AC-3Day-Forecast', {
                 // Build up the details regarding sunset
                 sunIcon = document.createElement('img');
                 sunIcon.className = 'detailIcon';
-                sunIcon.setAttribute('height', '15');
-                sunIcon.setAttribute('width', '15');
+                sunIcon.setAttribute('height', imgSize);
+                sunIcon.setAttribute('width', imgSize);
                 sunIcon.src = './modules/MMM-AC-3Day-Forecast/images/sunset.png';
 
                 sunText = document.createElement('span');
