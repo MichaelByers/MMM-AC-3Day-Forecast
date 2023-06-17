@@ -1,7 +1,7 @@
 # MMM-AC-3Day-Forecast
 ![3 day forecast](3day.png "3 day forecast.")
 
-This a module for the [MagicMirror](https://github.com/MichMich/MagicMirror/tree/develop).  This module shows a 3 day forecast (today, tomorrow and the day after) using the Wunderground API. It displays the overall weather condition, highest temperature, likely-hood of rain, average humidity, highest windspeed and its direction forecast.  This is designed to compliment the default Current Weather module.<br>  
+This a module for the [MagicMirror](https://github.com/MichMich/MagicMirror/tree/develop).  This module shows a 3 day forecast (today, tomorrow and the day after) using the AccuWeather API. It displays the overall weather condition, highest temperature, likely-hood of rain, average humidity, highest windspeed and its direction forecast.  This is designed to compliment the default Current Weather module.<br>  
 **Note:** This is now based on the API offered by [Accuweather](https://developer.accuweather.com/apis). You will need your own API key!
 
 ## Installation
