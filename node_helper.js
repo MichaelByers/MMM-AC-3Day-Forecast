@@ -25,9 +25,7 @@ module.exports = NodeHelper.create({
 				var forecast = []; // Clear the array
 				// Check to see if we are error free and got an OK response
 				if (response.status == 200) {
-					for (var i=0; i < 3; i++) {
-						forecast.push(response.data.DailyForecasts[i]);
-					}
+                	forecast=response.data;
 				} else {
 					// In all other cases it's some other error
 					console.log('[MMM-3Day-Forecast] ** ERROR ** ' + response.statusCode);
